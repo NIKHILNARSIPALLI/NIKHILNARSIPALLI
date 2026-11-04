@@ -1,5 +1,6 @@
 name: Refresh active and past projects
 
+# Rebuild the two README project sections from public push activity.
 on:
   schedule:
     - cron: "17 1 * * *"
