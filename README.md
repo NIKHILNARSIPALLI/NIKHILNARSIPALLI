@@ -32,9 +32,9 @@
 ## 🚀 What I'm Building
 
 <div align="center">
-  <img src="assets/featured-telco.gif" width="30%" alt="Animated Telco Churn MLOps card showing ROC-AUC 0.84 and test accuracy 79.43 percent" />&nbsp;&nbsp;
-  <img src="assets/featured-stocks.gif" width="30%" alt="Animated Stocks Screener card with illustrative candlesticks and scanning filter" />&nbsp;&nbsp;
-  <img src="assets/featured-sentiment.gif" width="30%" alt="Animated Sentiment NLP card showing positive, neutral and negative tokens" />
+  <a href="https://github.com/NIKHILNARSIPALLI/Telco-Customer-Churn-Prediction-End-to-End-ML-Engineering-Deployment" title="View Telco Churn MLOps repository"><img src="assets/featured-telco.gif" width="30%" alt="Animated Telco Churn MLOps card showing ROC-AUC 0.84 and test accuracy 79.43 percent" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/NIKHILNARSIPALLI/StockAnalysisMadeSimple" title="View Stocks Screener repository"><img src="assets/featured-stocks.gif" width="30%" alt="Animated Stocks Screener card with illustrative candlesticks and scanning filter" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/NIKHILNARSIPALLI/Tweets-Sentiment-prediction" title="View Tweets Sentiment repository"><img src="assets/featured-sentiment.gif" width="30%" alt="Animated Sentiment NLP card showing positive, neutral and negative tokens" /></a>
 </div>
 
 <details>
@@ -51,7 +51,7 @@
   **💬 Tweets Sentiment Prediction**  
   NLP sentiment classifier using the Sentiment140 dataset with a Streamlit interface. The animated card is a conceptual visualization, not live inference.
 
-  <!-- TODO: Add verified, public repository URLs here. Do not invent names or paths. -->
+  Each animated tile above opens its corresponding public repository.
 </details>
 
 <div align="center"><a href="https://github.com/NIKHILNARSIPALLI?tab=repositories"><strong>Browse my repositories</strong></a></div>
@@ -131,8 +131,6 @@
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=NIKHILNARSIPALLI&show_icons=true&hide_border=true&theme=transparent&title_color=B987BA&icon_color=C48EC6" height="176" alt="Live GitHub activity statistics" />
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NIKHILNARSIPALLI&layout=compact&langs_count=6&hide_border=true&theme=transparent&title_color=B987BA" height="176" alt="Most-used languages in public GitHub repositories" />
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=NIKHILNARSIPALLI&theme=github-compact&hide_border=true&color=B987BA&line=AD689F&point=E2B9DF" width="96%" alt="Recent GitHub activity graph" />
-
   <img src="https://raw.githubusercontent.com/NIKHILNARSIPALLI/NIKHILNARSIPALLI/output/snake.gif" width="95%" alt="Daily refreshed animated contribution snake" />
 </div>
 
