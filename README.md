@@ -140,6 +140,18 @@
 
 <sub>The animated snake refreshes through GitHub Actions. Public contributions do not represent the full scope of employment or private engineering work.</sub>
 
+<!-- LINKEDIN:START -->
+## 💬 Latest on LinkedIn
+
+<p><em>Ideas, projects and lessons beyond the commit history. Click a tile to read the original post.</em></p>
+
+<table>
+<tr><td width="50%" align="center" valign="top"><a href="https://lnkd.in/p/gwbWPf-M"><img src="assets/linkedin-post-1.svg" alt="Latest LinkedIn post — open the original" width="100%" /></a></td><td width="50%" align="center" valign="top"><a href="https://lnkd.in/p/gjspi2Sg"><img src="assets/linkedin-post-2.svg" alt="Recent LinkedIn post — open the original" width="100%" /></a></td></tr>
+</table>
+
+<p align="center"><a href="https://www.linkedin.com/in/nikhilnarsipalli/recent-activity/all/">Explore more on LinkedIn</a></p>
+<!-- LINKEDIN:END -->
+
 ---
 
 <div align="center">
