@@ -11,8 +11,8 @@ import subprocess
 from PIL import Image, ImageDraw, ImageFont
 
 WIDTH, HEIGHT = 800, 207
-FRAMES = 90
-DURATION_MS = 105
+FRAMES = 240
+DURATION_MS = 40
 TRACKS = [
     ("PYTHON", "FASTAPI", "DJANGO", "DOCKER", "AWS", "MLFLOW"),
     ("AZURE OPENAI", "SCIKIT-LEARN", "GITHUB ACTIONS", "PROMETHEUS", "GRAFANA", "OPENCV"),
@@ -44,7 +44,7 @@ def draw_track(draw, labels, y, offset, to_right):
     widths = [int(draw.textbbox((0, 0), label, font=label_font)[2] + 42) for label in labels]
     gap = 13
     period = sum(widths) + gap * len(widths)
-    shift = round(offset * period)
+    shift = offset * period
     # On the lower track, motion is precisely reversed. All positions are
     # periodic, so frame FRAMES would be pixel-identical to frame zero.
     x = 19 + (shift if to_right else -shift) - 2 * period
