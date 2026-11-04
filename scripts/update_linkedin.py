@@ -4,6 +4,7 @@ Add/update posts via the 'Add LinkedIn post' GitHub Actions workflow, or edit
 linkedin/posts.json manually. No LinkedIn scraping or private API is used.
 """
 import json
+import os
 import re
 from pathlib import Path
 from urllib.parse import urlparse
@@ -70,7 +71,18 @@ def render(posts):
 
 
 def main():
-    posts = [normalize_post(p) for p in json.loads(DATA.read_text(encoding="utf-8"))][:4]
+    posts = [normalize_post(p) for p in json.loads(DATA.read_text(encoding="utf-8"))]
+    new_url = os.environ.get("POST_URL", "").strip()
+    if new_url:
+        new_post = normalize_post({
+            "url": new_url,
+            "title": os.environ.get("POST_TITLE", "") or "A new update on LinkedIn",
+            "image": os.environ.get("POST_IMAGE", ""),
+            "date": os.environ.get("POST_DATE", ""),
+        })
+        posts = [new_post] + [p for p in posts if p["url"] != new_url]
+    posts = posts[:4]
+    DATA.write_text(json.dumps(posts, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     readme = README.read_text(encoding="utf-8")
     if START not in readme or END not in readme:
         raise ValueError("LinkedIn section markers missing from README")
