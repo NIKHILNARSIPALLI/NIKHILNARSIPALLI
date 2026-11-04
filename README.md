@@ -4,7 +4,7 @@
      No JavaScript runs on GitHub; all motion is contained in GIF images. -->
 
 <div align="center">
-  <img src="assets/hero-future-optimized.gif" width="100%" alt="Nikhil Narsipalli — Curious by Nature, Engineer by Passion. Animated plum flow lines and futuristic orbital network." />
+  <img src="assets/hero-future-optimized.gif?v=20261104-opaque" width="100%" alt="Nikhil Narsipalli — Curious by Nature, Engineer by Passion. Animated plum flow lines and futuristic orbital network." />
 
   <p><strong>Python-focused Software Engineer · Backend Engineering · Applied AI/ML · Automation</strong></p>
 
@@ -63,7 +63,7 @@
 ## 🧰 Engineering Toolkit
 
 <div align="center">
-  <img src="assets/stack-carousel.gif" width="100%" alt="Two slow, seamless engineering toolkit carousels flowing in opposite directions" />
+  <img src="assets/stack-carousel.gif?v=20261104-opaque" width="100%" alt="Two slow, seamless engineering toolkit carousels flowing in opposite directions" />
 
   <img src="https://skillicons.dev/icons?i=py,fastapi,django,mysql,docker,aws,azure,git,githubactions,sklearn&theme=dark&perline=10" alt="Primary technology logos: Python, FastAPI, Django, MySQL, Docker, AWS, Azure, Git, GitHub Actions and scikit-learn" />
   <br />
