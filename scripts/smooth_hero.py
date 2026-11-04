@@ -35,9 +35,16 @@ def main():
     palette = source_frames[0].quantize(colors=128)
     indexed = [frame.quantize(palette=palette, dither=Image.Dither.NONE)
                for frame in frames]
+    colors = palette.getpalette()
+    dark = sorted(range(128), key=lambda i: sum(abs(colors[i * 3 + j] - c)
+                   for j, c in enumerate((23, 13, 29))))
+    a, b = dark[:2]
+    for i, im in enumerate(indexed):
+        im.putpixel((0, 0), a if i % 2 else b)
+        im.putpixel((im.width - 1, im.height - 1), a if i % 2 else b)
     indexed[0].save(
         OUTPUT, save_all=True, append_images=indexed[1:], loop=0,
-        duration=FRAME_MS, disposal=2, optimize=False,
+        duration=FRAME_MS, disposal=1, optimize=False,
     )
     print(f"Hero: {len(indexed)} uniform frames, {OUTPUT.stat().st_size:,} bytes")
 

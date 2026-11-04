@@ -69,12 +69,22 @@ def main():
         progress = frame / FRAMES
         draw_track(draw, TRACKS[0], 108, progress, False)
         draw_track(draw, TRACKS[1], 158, progress, True)
-        frames.append(im.quantize(colors=32, method=Image.Quantize.MEDIANCUT))
+        frames.append(im)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    # Full-frame encoding keeps a uniform cadence and avoids delta-frame
-    # disposal flicker in GitHub's GIF playback.
-    frames[0].save(OUTPUT, save_all=True, append_images=frames[1:],
-                   optimize=False, duration=DURATION_MS, loop=0, disposal=2)
+    palette = frames[0].quantize(colors=64, method=Image.Quantize.MEDIANCUT)
+    indexed = [im.quantize(palette=palette, dither=Image.Dither.NONE) for im in frames]
+    # GIF encoders otherwise optimize away unchanged regions into partial
+    # frames. Alternating two dark corner pixels forces a complete frame
+    # without disposal-to-background or transparent overlays.
+    colors = palette.getpalette()
+    dark = sorted(range(64), key=lambda i: sum(abs(colors[i * 3 + j] - c)
+                   for j, c in enumerate((33, 20, 38))))
+    a, b = dark[:2]
+    for i, im in enumerate(indexed):
+        im.putpixel((0, 0), a if i % 2 else b)
+        im.putpixel((WIDTH - 1, HEIGHT - 1), a if i % 2 else b)
+    indexed[0].save(OUTPUT, save_all=True, append_images=indexed[1:],
+                    optimize=False, duration=DURATION_MS, loop=0, disposal=1)
     print(f"{OUTPUT}: {OUTPUT.stat().st_size:,} bytes; {FRAMES} frames")
 
 
