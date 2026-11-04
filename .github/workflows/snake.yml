@@ -1,0 +1,29 @@
+name: Update contribution snake GIF
+
+on:
+  schedule:
+    - cron: "31 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Render contribution grid animation
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake.gif?color_snake=%23C084FC&color_dots=%23190F25,%233F244B,%23673679,%239B5CA3,%23D7A5DA&color_background=%23110D19
+
+      - name: Publish animation to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
