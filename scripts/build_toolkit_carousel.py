@@ -25,7 +25,7 @@ def font(size, bold=False):
 
 title_font = font(24, True)
 small_font = font(11)
-label_font = font(13, True)
+label_font = font(12, True)
 
 
 def make_base():
@@ -41,7 +41,7 @@ def make_base():
 
 
 def draw_track(draw, labels, y, offset, to_right):
-    widths = [int(draw.textbbox((0, 0), label, font=label_font)[2] + 42) for label in labels]
+    widths = [int(draw.textbbox((0, 0), label, font=label_font)[2] + 34) for label in labels]
     gap = 13
     period = sum(widths) + gap * len(widths)
     shift = offset * period
@@ -53,10 +53,10 @@ def draw_track(draw, labels, y, offset, to_right):
             if x + pill_width >= 0 and x < WIDTH:
                 left, right = max(x, 4), min(x + pill_width, WIDTH - 5)
                 if right > left:
-                    draw.rounded_rectangle((left, y, right, y + 36), radius=17,
+                    draw.rounded_rectangle((left, y, right, y + 32), radius=14,
                                            fill="#39243f", outline="#77527e", width=1)
-                    draw.ellipse((x + 13, y + 16, x + 18, y + 21), fill="#d3a2d0")
-                    draw.text((x + 25, y + 10), label, font=label_font, fill="#f0dced")
+                    draw.ellipse((x + 10, y + 14, x + 15, y + 19), fill="#d3a2d0")
+                    draw.text((x + 21, y + 8), label, font=label_font, fill="#f0dced")
             x += pill_width + gap
 
 
@@ -71,14 +71,10 @@ def main():
         draw_track(draw, TRACKS[1], 158, progress, True)
         frames.append(im.quantize(colors=32, method=Image.Quantize.MEDIANCUT))
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    # Full-frame encoding keeps a uniform cadence and avoids delta-frame
+    # disposal flicker in GitHub's GIF playback.
     frames[0].save(OUTPUT, save_all=True, append_images=frames[1:],
-                   optimize=True, duration=DURATION_MS, loop=0, disposal=2)
-    # ImageMagick combines unchanged pixels into delta frames, keeping the GIF
-    # small enough for GitHub while preserving the exact loop/timing.
-    if shutil.which("convert"):
-        optimized = OUTPUT.with_name("stack-carousel-optimized.gif")
-        subprocess.run(["convert", str(OUTPUT), "-layers", "Optimize", str(optimized)], check=True)
-        os.replace(optimized, OUTPUT)
+                   optimize=False, duration=DURATION_MS, loop=0, disposal=1)
     print(f"{OUTPUT}: {OUTPUT.stat().st_size:,} bytes; {FRAMES} frames")
 
 
