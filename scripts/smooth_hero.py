@@ -37,7 +37,7 @@ def main():
                for frame in frames]
     indexed[0].save(
         OUTPUT, save_all=True, append_images=indexed[1:], loop=0,
-        duration=FRAME_MS, disposal=1, optimize=False,
+        duration=FRAME_MS, disposal=2, optimize=False,
     )
     print(f"Hero: {len(indexed)} uniform frames, {OUTPUT.stat().st_size:,} bytes")
 

@@ -11,8 +11,8 @@ import subprocess
 from PIL import Image, ImageDraw, ImageFont
 
 WIDTH, HEIGHT = 800, 207
-FRAMES = 240
-DURATION_MS = 40
+FRAMES = 180
+DURATION_MS = 80
 TRACKS = [
     ("PYTHON", "FASTAPI", "DJANGO", "DOCKER", "AWS", "MLFLOW"),
     ("AZURE OPENAI", "SCIKIT-LEARN", "GITHUB ACTIONS", "PROMETHEUS", "GRAFANA", "OPENCV"),
@@ -74,7 +74,7 @@ def main():
     # Full-frame encoding keeps a uniform cadence and avoids delta-frame
     # disposal flicker in GitHub's GIF playback.
     frames[0].save(OUTPUT, save_all=True, append_images=frames[1:],
-                   optimize=False, duration=DURATION_MS, loop=0, disposal=1)
+                   optimize=False, duration=DURATION_MS, loop=0, disposal=2)
     print(f"{OUTPUT}: {OUTPUT.stat().st_size:,} bytes; {FRAMES} frames")
 
 
