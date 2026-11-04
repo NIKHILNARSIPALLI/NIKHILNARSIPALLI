@@ -1,4 +1,4 @@
-"""Build a single-track, perfectly wrapping GitHub-safe toolkit carousel.
+"""Build a slow, two-track, perfectly wrapping GitHub-safe toolkit carousel.
 
 The first and last GIF frames are adjacent offsets on the same circular strip.
 No JavaScript or hover behaviour is required; GIF playback is native to GitHub.
@@ -10,12 +10,12 @@ import shutil
 import subprocess
 from PIL import Image, ImageDraw, ImageFont
 
-WIDTH, HEIGHT = 1000, 178
-FRAMES = 110
-DURATION_MS = 65
-SKILLS = [
-    "PYTHON", "FASTAPI", "DJANGO", "DOCKER", "AWS", "MLFLOW",
-    "AZURE OPENAI", "GITHUB ACTIONS", "GRAFANA",
+WIDTH, HEIGHT = 800, 207
+FRAMES = 90
+DURATION_MS = 105
+TRACKS = [
+    ("PYTHON", "FASTAPI", "DJANGO", "DOCKER", "AWS", "MLFLOW"),
+    ("AZURE OPENAI", "SCIKIT-LEARN", "GITHUB ACTIONS", "PROMETHEUS", "GRAFANA", "OPENCV"),
 ]
 OUTPUT = Path(__file__).resolve().parents[1] / "assets" / "stack-carousel.gif"
 
@@ -36,39 +36,40 @@ def make_base():
     draw.line((29, 31, 29, 89), fill="#b17bad", width=3)
     draw.text((48, 28), "ENGINEERING TOOLKIT", font=title_font, fill="#f4e9f2")
     draw.text((49, 67), "BUILD  /  LEARN  /  DEPLOY  /  OBSERVE", font=small_font, fill="#bea8c3")
-    draw.line((28, 103, WIDTH - 28, 103), fill="#4c3052", width=1)
+    draw.line((28, 95, WIDTH - 28, 95), fill="#4c3052", width=1)
     return canvas
+
+
+def draw_track(draw, labels, y, offset, to_right):
+    widths = [int(draw.textbbox((0, 0), label, font=label_font)[2] + 42) for label in labels]
+    gap = 13
+    period = sum(widths) + gap * len(widths)
+    shift = round(offset * period)
+    # On the lower track, motion is precisely reversed. All positions are
+    # periodic, so frame FRAMES would be pixel-identical to frame zero.
+    x = 19 + (shift if to_right else -shift) - 2 * period
+    while x < WIDTH:
+        for label, pill_width in zip(labels, widths):
+            if x + pill_width >= 0 and x < WIDTH:
+                left, right = max(x, 4), min(x + pill_width, WIDTH - 5)
+                if right > left:
+                    draw.rounded_rectangle((left, y, right, y + 36), radius=17,
+                                           fill="#39243f", outline="#77527e", width=1)
+                    draw.ellipse((x + 13, y + 16, x + 18, y + 21), fill="#d3a2d0")
+                    draw.text((x + 25, y + 10), label, font=label_font, fill="#f0dced")
+            x += pill_width + gap
 
 
 def main():
     base = make_base()
-    measure = ImageDraw.Draw(base)
-    widths = [int(measure.textbbox((0, 0), label, font=label_font)[2] + 42) for label in SKILLS]
-    gap = 14
-    period = sum(widths) + gap * len(widths)
-    # Each frame moves by exactly 1/FRAMES of the complete, cyclic strip.
-    # After the last frame, the implicit next offset is precisely one period.
     frames = []
     for frame in range(FRAMES):
         im = base.copy()
         draw = ImageDraw.Draw(im)
-        offset = round(frame * period / FRAMES)
-        x = 26 - offset
-        # Repaint the strip at the same positions modulo the exact period.
-        # Two or three copies fill the viewport for every offset.
-        while x < WIDTH:
-            for label, pill_width in zip(SKILLS, widths):
-                if x + pill_width >= 0 and x < WIDTH:
-                    left, right = max(x, 4), min(x + pill_width, WIDTH - 5)
-                    if right > left:
-                        draw.rounded_rectangle((left, 119, right, 158), radius=19,
-                                               fill="#39243f", outline="#77527e", width=1)
-                        # Text may clip at the image edge, as in a genuine marquee.
-                        draw.ellipse((x + 14, 136, x + 19, 141), fill="#d3a2d0")
-                        draw.text((x + 26, 130), label, font=label_font, fill="#f0dced")
-                x += pill_width + gap
-            # The single continuous track is repeated, not restarted visually.
-        frames.append(im.quantize(colors=48, method=Image.Quantize.MEDIANCUT))
+        progress = frame / FRAMES
+        draw_track(draw, TRACKS[0], 108, progress, False)
+        draw_track(draw, TRACKS[1], 158, progress, True)
+        frames.append(im.quantize(colors=32, method=Image.Quantize.MEDIANCUT))
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     frames[0].save(OUTPUT, save_all=True, append_images=frames[1:],
                    optimize=True, duration=DURATION_MS, loop=0, disposal=2)

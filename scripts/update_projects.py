@@ -16,6 +16,7 @@ import urllib.request
 OWNER = "NIKHILNARSIPALLI"
 UTILITY_REPOS = {"Fonts"}  # Asset-only utility repository, not a standalone project.
 README = Path(__file__).resolve().parents[1] / "README.md"
+VISIBILITY = Path(__file__).resolve().parents[1] / ".github" / "portfolio-visibility.md"
 WINDOW = timedelta(days=30)
 START = "<!-- PROJECTS:START -->"
 END = "<!-- PROJECTS:END -->"
@@ -52,6 +53,14 @@ def get_repositories():
         if len(batch) < 100:
             break
     return results
+
+
+def hidden_repositories():
+    """Checked items in the private-to-README checklist are hidden from cards."""
+    if not VISIBILITY.exists():
+        return set()
+    return set(re.findall(r"(?im)^\s*-\s*\[x\]\s*`([^`]+)`\s*$",
+                          VISIBILITY.read_text(encoding="utf-8")))
 
 
 def project_image(repo):
@@ -95,10 +104,12 @@ def other_table(repos):
     return "<table>\n" + "\n".join(rows) + "\n</table>"
 
 
-def render(repositories, now=None):
+def render(repositories, now=None, hidden=None):
     now = now or datetime.now(timezone.utc)
+    hidden = hidden_repositories() if hidden is None else set(hidden)
     threshold = now - WINDOW
-    eligible = [r for r in repositories if r.get("name") != OWNER and r.get("name") not in UTILITY_REPOS and not r.get("private")
+    eligible = [r for r in repositories if r.get("name") != OWNER and r.get("name") not in UTILITY_REPOS
+                and r.get("name") not in hidden and not r.get("private")
                 and not r.get("fork") and not r.get("archived") and r.get("size", 0) > 0
                 and r.get("pushed_at")]
     eligible.sort(key=lambda r: r["pushed_at"], reverse=True)

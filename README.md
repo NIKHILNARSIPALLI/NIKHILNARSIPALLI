@@ -55,11 +55,6 @@
   Sentiment140-based NLP sentiment classifier with a Streamlit interface. Animation is conceptual, not live inference.
 </details>
 
-<table>
-  <tr><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/pfsinterns"><strong>pfsinterns</strong></a><br />This Repository is created as part of an internship opportunity provided by &#x27;Pinnacle Full-Stack Interns&#x27;.<br /><sub>Jupyter Notebook</sub></td><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/Heart-Disease-Prediction"><strong>Heart Disease Prediction</strong></a><br />This repository is part of an internship projects at pnfsninterns. This project is based on accurately predicting the heart disease in patients.<br /><sub>Jupyter Notebook</sub></td></tr>
-  <tr><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/Credit-EDA-Case-Study"><strong>Credit EDA Case Study</strong></a><br />This is an EDA project on &quot;Electric and Alternate Fuel Charging Stations in US and Canada&quot;.<br /><sub>Jupyter Notebook</sub></td><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/Tweets-Generation-NLP"><strong>Tweets Generation NLP</strong></a><br />In this project, I have developed an NLP model based on the Sentimental140 dataset by using LSTM. This model Generates tweets based on a seed statement, wh…<br /><sub>Jupyter Notebook</sub></td></tr>
-</table>
-
 <p><em>Project placement refreshes daily using each repository’s last public push date (30-day window).</em></p>
 <!-- PROJECTS:END -->
 
@@ -68,7 +63,7 @@
 ## 🧰 Engineering Toolkit
 
 <div align="center">
-  <img src="assets/stack-carousel.gif" width="100%" alt="Seamlessly looping engineering toolkit carousel with technology names" />
+  <img src="assets/stack-carousel.gif" width="100%" alt="Two slow, seamless engineering toolkit carousels flowing in opposite directions" />
 
   <img src="https://skillicons.dev/icons?i=py,fastapi,django,mysql,docker,aws,azure,git,githubactions,sklearn&theme=dark&perline=10" alt="Primary technology logos: Python, FastAPI, Django, MySQL, Docker, AWS, Azure, Git, GitHub Actions and scikit-learn" />
   <br />
