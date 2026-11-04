@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="156" viewBox="0 0 1100 156" role="img" aria-label="Engineering Toolkit: Design, Build, Deploy, Observe">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#211324"/>
+      <stop offset="1" stop-color="#3b2044"/>
+    </linearGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d09dd2" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#d09dd2" stop-opacity=".12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1100" height="156" rx="12" fill="url(#bg)"/>
+  <path d="M26 27 V129" stroke="#b17bad" stroke-width="3" stroke-linecap="round"/>
+  <text x="54" y="68" fill="#f6ebf5" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" letter-spacing="2">ENGINEERING TOOLKIT</text>
+  <text x="56" y="103" fill="#c3aac6" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="2.5">TOOLS I USE TO TURN IDEAS INTO WORKING SYSTEMS</text>
+  <path d="M55 120 H1040" stroke="url(#rule)" stroke-width="1"/>
+  <g fill="#e7d1e6" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="600" letter-spacing="1.6">
+    <text x="694" y="64">DESIGN</text>
+    <text x="795" y="64">BUILD</text>
+    <text x="881" y="64">DEPLOY</text>
+    <text x="987" y="64">OBSERVE</text>
+  </g>
+  <g stroke="#a677aa" stroke-width="1.5" fill="none" opacity=".65">
+    <path d="M758 59 H779 M851 59 H865 M952 59 H969"/>
+  </g>
+  <g fill="#c792c3"><circle cx="780" cy="59" r="2.5"/><circle cx="866" cy="59" r="2.5"/><circle cx="970" cy="59" r="2.5"/></g>
+</svg>

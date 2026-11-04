@@ -68,7 +68,7 @@
 ## 🧰 Engineering Toolkit
 
 <div align="center">
-  <img src="assets/stack-motion-preview.png" width="100%" alt="Engineering toolchain banner showing build, learn, deploy and observe" />
+  <img src="assets/engineering-toolkit.svg" width="100%" alt="Engineering toolkit — Design, Build, Deploy, Observe" />
 
   <img src="https://skillicons.dev/icons?i=py,fastapi,django,mysql,docker,aws,azure,git,githubactions,sklearn&theme=dark&perline=10" alt="Primary technology logos: Python, FastAPI, Django, MySQL, Docker, AWS, Azure, Git, GitHub Actions and scikit-learn" />
   <br />
