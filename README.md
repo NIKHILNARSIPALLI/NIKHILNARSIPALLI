@@ -31,35 +31,44 @@
 
 ## 🚀 What I'm Building
 
+<!-- PROJECTS:START -->
+<p><em>No public project repositories have received a push in the past 30 days. Private or local work may still be in progress.</em></p>
+
+## ✨ A Few of My Projects
+
 <div align="center">
-  <a href="https://github.com/NIKHILNARSIPALLI/Telco-Customer-Churn-Prediction-End-to-End-ML-Engineering-Deployment" title="View Telco Churn MLOps repository"><img src="assets/featured-telco.gif" width="30%" alt="Animated Telco Churn MLOps card showing ROC-AUC 0.84 and test accuracy 79.43 percent" /></a>&nbsp;&nbsp;
-  <a href="https://github.com/NIKHILNARSIPALLI/StockAnalysisMadeSimple" title="View Stocks Screener repository"><img src="assets/featured-stocks.gif" width="30%" alt="Animated Stocks Screener card with illustrative candlesticks and scanning filter" /></a>&nbsp;&nbsp;
-  <a href="https://github.com/NIKHILNARSIPALLI/Tweets-Sentiment-prediction" title="View Tweets Sentiment repository"><img src="assets/featured-sentiment.gif" width="30%" alt="Animated Sentiment NLP card showing positive, neutral and negative tokens" /></a>
+  <a href="https://github.com/NIKHILNARSIPALLI/Telco-Customer-Churn-Prediction-End-to-End-ML-Engineering-Deployment" title="View Telco Churn MLOps repository"><img src="assets/featured-telco.gif" width="30%" alt="Telco Churn MLOps: ROC-AUC 0.84 and test accuracy 79.43%" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/NIKHILNARSIPALLI/StockAnalysisMadeSimple" title="View Stocks Screening Application repository"><img src="assets/featured-stocks.gif" width="30%" alt="Stocks Screening Application: Illustrative stock-screening animation" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/NIKHILNARSIPALLI/Tweets-Sentiment-prediction" title="View Tweets Sentiment Prediction repository"><img src="assets/featured-sentiment.gif" width="30%" alt="Tweets Sentiment Prediction: Illustrative sentiment NLP animation" /></a>
 </div>
 
 <details>
-  <summary><strong>Explore these three featured builds</strong></summary>
+  <summary><strong>Explore these featured builds</strong></summary>
 
-  <br />
+  **Telco Churn MLOps**  
+  Built a FastAPI/scikit-learn ML service with MLflow, Docker, AWS deployment, CI/CD and monitoring. Evaluated 28 configurations across four classifiers.
 
-  **📡 Telco Customer Churn — End-to-End ML Engineering & MLOps**  
-  Built a modular FastAPI inference system with scikit-learn, MLflow experiment tracking and champion/challenger model management, Docker deployment on AWS EC2/S3/ECR, GitHub Actions CI/CD, and Prometheus/Grafana monitoring. Evaluated **28 hyperparameter configurations** across four classifiers; achieved **0.84 ROC-AUC** and **79.43% test accuracy** on held-out samples.
+  **Stocks Screening Application**  
+  Python desktop screener using market-data APIs, scraping, configurable filters, and visual results. Animation shows conceptual, not live, market data.
 
-  **📈 Stocks Screening Application**  
-  Python desktop screener using market-data APIs, scraping, configurable filters, and visual results. The card's candlesticks are illustrative, not live prices.
-
-  **💬 Tweets Sentiment Prediction**  
-  NLP sentiment classifier using the Sentiment140 dataset with a Streamlit interface. The animated card is a conceptual visualization, not live inference.
-
-  Each animated tile above opens its corresponding public repository.
+  **Tweets Sentiment Prediction**  
+  Sentiment140-based NLP sentiment classifier with a Streamlit interface. Animation is conceptual, not live inference.
 </details>
 
-<div align="center"><a href="https://github.com/NIKHILNARSIPALLI?tab=repositories"><strong>Browse my repositories</strong></a></div>
+<table>
+  <tr><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/pfsinterns"><strong>pfsinterns</strong></a><br />This Repository is created as part of an internship opportunity provided by &#x27;Pinnacle Full-Stack Interns&#x27;.<br /><sub>Jupyter Notebook</sub></td><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/Heart-Disease-Prediction"><strong>Heart Disease Prediction</strong></a><br />This repository is part of an internship projects at pnfsninterns. This project is based on accurately predicting the heart disease in patients.<br /><sub>Jupyter Notebook</sub></td></tr>
+  <tr><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/Credit-EDA-Case-Study"><strong>Credit EDA Case Study</strong></a><br />This is an EDA project on &quot;Electric and Alternate Fuel Charging Stations in US and Canada&quot;.<br /><sub>Jupyter Notebook</sub></td><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/Tweets-Generation-NLP"><strong>Tweets Generation NLP</strong></a><br />In this project, I have developed an NLP model based on the Sentimental140 dataset by using LSTM. This model Generates tweets based on a seed statement, wh…<br /><sub>Jupyter Notebook</sub></td></tr>
+</table>
+
+<p><em>Project placement refreshes daily using each repository’s last public push date (30-day window).</em></p>
+<!-- PROJECTS:END -->
+
+<div align="center"><a href="https://github.com/NIKHILNARSIPALLI?tab=repositories"><strong>Browse all repositories</strong></a></div>
 
 ## 🧰 Engineering Toolkit
 
 <div align="center">
-  <img src="assets/stack-motion.gif" width="100%" alt="Animated plum engineering toolchain ribbon with moving technology labels" />
+  <img src="assets/stack-motion-preview.png" width="100%" alt="Engineering toolchain banner showing build, learn, deploy and observe" />
 
   <img src="https://skillicons.dev/icons?i=py,fastapi,django,mysql,docker,aws,azure,git,githubactions,sklearn&theme=dark&perline=10" alt="Primary technology logos: Python, FastAPI, Django, MySQL, Docker, AWS, Azure, Git, GitHub Actions and scikit-learn" />
   <br />
