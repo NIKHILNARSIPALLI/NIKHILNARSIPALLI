@@ -129,12 +129,12 @@
 ## 📊 GitHub Activity
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=NIKHILNARSIPALLI&show_icons=true&hide_border=true&theme=transparent&title_color=B987BA&icon_color=C48EC6" height="176" alt="Live GitHub activity statistics" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NIKHILNARSIPALLI&layout=compact&langs_count=6&hide_border=true&theme=transparent&title_color=B987BA" height="176" alt="Most-used languages in public GitHub repositories" />
   <img src="https://raw.githubusercontent.com/NIKHILNARSIPALLI/NIKHILNARSIPALLI/output/snake.gif" width="95%" alt="Daily refreshed animated contribution snake" />
+
+  <a href="https://github.com/NIKHILNARSIPALLI?tab=overview"><strong>Explore my contribution history on GitHub</strong></a>
 </div>
 
-<sub>Live GitHub cards reflect public repository activity, not the full scope of employment or private engineering work. Third-party stats may sometimes be unavailable because of rate limits.</sub>
+<sub>The animated snake refreshes through GitHub Actions. Public contributions do not represent the full scope of employment or private engineering work.</sub>
 
 ---
 
