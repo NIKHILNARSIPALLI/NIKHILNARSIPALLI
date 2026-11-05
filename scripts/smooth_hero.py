@@ -15,15 +15,15 @@ def render(base, frame):
     d = ImageDraw.Draw(im)
     # Redraw only the moving half, preserving the original name and tagline.
     for y in range(im.height):
-        for x in range(500, im.width):
+        for x in range(430, im.width):
             halo = max(0, 1 - ((x-635)/410)**2 - ((y-147)/240)**2)
             a = .20 * halo
             d.point((x,y), fill=(int(27+27*a), int(16+9*a), int(31+29*a)))
     for band in range(12):
         points = []
         y0 = 63 + 13.2*band
-        for x in range(503, 880, 3):
-            s = (x-503)/377
+        for x in range(433, 880, 3):
+            s = (x-433)/447
             envelope = .30 + .70*math.sin(math.pi*s)**2
             wave = 10*math.sin(TAU*(2*s-frame/FRAMES)+band*.34) + 3*math.sin(TAU*(3*s+frame/FRAMES)+band*.6)
             points.append((x, int(y0+envelope*wave)))
@@ -40,7 +40,13 @@ def render(base, frame):
     nodes=[(cx+48*math.cos(TAU*j/6+phase),cy+48*math.sin(TAU*j/6+phase)) for j in range(6)]
     for j in range(6):
         d.line((*nodes[j],*nodes[(j+2)%6]), fill=(158,103,164),width=1)
-    return im
+    # Feather the join, so the original static panel never has a vertical seam.
+    mask = Image.new("L", im.size, 0)
+    md = ImageDraw.Draw(mask)
+    for x in range(430, im.width):
+        v = int(255 * max(0, min(1, (x-430)/145)))
+        md.line((x,0,x,im.height),fill=v)
+    return Image.composite(im,base,mask)
 
 def main():
     source=Image.open(SOURCE); source.seek(0)
