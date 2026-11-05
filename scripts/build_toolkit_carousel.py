@@ -11,8 +11,8 @@ import subprocess
 from PIL import Image, ImageDraw, ImageFont
 
 WIDTH, HEIGHT = 800, 207
-FRAMES = 180
-DURATION_MS = 80
+FRAMES = 120
+DURATION_MS = 100
 TRACKS = [
     ("PYTHON", "FASTAPI", "DJANGO", "DOCKER", "AWS", "MLFLOW"),
     ("AZURE OPENAI", "SCIKIT-LEARN", "GITHUB ACTIONS", "PROMETHEUS", "GRAFANA", "OPENCV"),
@@ -71,20 +71,11 @@ def main():
         draw_track(draw, TRACKS[1], 158, progress, True)
         frames.append(im)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    palette = frames[0].quantize(colors=64, method=Image.Quantize.MEDIANCUT)
+    palette = frames[0].quantize(colors=48, method=Image.Quantize.MEDIANCUT)
     indexed = [im.quantize(palette=palette, dither=Image.Dither.NONE) for im in frames]
-    # GIF encoders otherwise optimize away unchanged regions into partial
-    # frames. Alternating two dark corner pixels forces a complete frame
-    # without disposal-to-background or transparent overlays.
-    colors = palette.getpalette()
-    dark = sorted(range(64), key=lambda i: sum(abs(colors[i * 3 + j] - c)
-                   for j, c in enumerate((33, 20, 38))))
-    a, b = dark[:2]
-    for i, im in enumerate(indexed):
-        im.putpixel((0, 0), a if i % 2 else b)
-        im.putpixel((WIDTH - 1, HEIGHT - 1), a if i % 2 else b)
+    # Correct disposal and full opaque background on each source frame.
     indexed[0].save(OUTPUT, save_all=True, append_images=indexed[1:],
-                    optimize=False, duration=DURATION_MS, loop=0, disposal=1)
+                    optimize=True, duration=DURATION_MS, loop=0, disposal=2)
     print(f"{OUTPUT}: {OUTPUT.stat().st_size:,} bytes; {FRAMES} frames")
 
 
