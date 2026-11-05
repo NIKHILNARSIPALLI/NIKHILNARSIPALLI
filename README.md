@@ -32,7 +32,9 @@
 ## 🚀 What I'm Building
 
 <!-- PROJECTS:START -->
-<p><em>No public project repositories have received a push in the past 30 days. Private or local work may still be in progress.</em></p>
+<table>
+  <tr><td width="50%" valign="top"><a href="https://github.com/NIKHILNARSIPALLI/linkedin-desk"><strong>linkedin desk</strong></a><br />A local-first desktop workspace for researching, drafting, and approval-gated publishing of LinkedIn posts.<br /><sub>Python</sub></td><td width="50%"></td></tr>
+</table>
 
 ## ✨ A Few of My Projects
 
