@@ -19,15 +19,15 @@ def render(base, frame):
             halo = max(0, 1 - ((x-635)/410)**2 - ((y-147)/240)**2)
             a = .20 * halo
             d.point((x,y), fill=(int(27+27*a), int(16+9*a), int(31+29*a)))
-    for band in range(12):
+    for band in range(21):
         points = []
-        y0 = 63 + 13.2*band
-        for x in range(433, 880, 3):
+        y0 = 31 + 11.2*band
+        for x in range(433, 880, 2):
             s = (x-433)/447
-            envelope = .30 + .70*math.sin(math.pi*s)**2
-            wave = 10*math.sin(TAU*(2*s-frame/FRAMES)+band*.34) + 3*math.sin(TAU*(3*s+frame/FRAMES)+band*.6)
+            envelope = .45 + .55*math.sin(math.pi*s)**2
+            wave = 15*math.sin(TAU*(2*s-frame/FRAMES)+band*.26) + 5*math.sin(TAU*(3*s+frame/FRAMES)+band*.43)
             points.append((x, int(y0+envelope*wave)))
-        d.line(points, fill=(104+band*2,55+band,102+band*2), width=1)
+        d.line(points, fill=(100+band,55+band//2,111+band), width=1)
     cx,cy = 635,148
     for radius in (43,70,95,121):
         d.ellipse((cx-radius,cy-radius,cx+radius,cy+radius), outline=(105,62,110), width=1)
