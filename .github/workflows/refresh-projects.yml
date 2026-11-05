@@ -26,12 +26,14 @@ jobs:
         run: python3 scripts/build_toolkit_carousel.py
       - name: Rebuild seamless profile header animation
         run: python3 scripts/smooth_hero.py
+      - name: Animate the point-cloud portrait
+        run: python3 scripts/animate_point_cloud.py
       - name: Commit if anything changed
         run: |
-          if ! git diff --quiet -- README.md assets/stack-carousel.gif assets/hero-future-optimized.gif; then
+          if ! git diff --quiet -- README.md assets/stack-carousel.gif assets/hero-future-optimized.gif assets/about-point-cloud-motion.webp; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add README.md assets/stack-carousel.gif assets/hero-future-optimized.gif
+            git add README.md assets/stack-carousel.gif assets/hero-future-optimized.gif assets/about-point-cloud-motion.webp
             git commit -m "Refresh projects and smooth toolkit animation"
             git push
           fi
