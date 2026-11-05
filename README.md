@@ -4,7 +4,7 @@
      No JavaScript runs on GitHub; all motion is contained in GIF images. -->
 
 <div align="center">
-  <img src="assets/hero-future-optimized.gif?v=20261104-opaque" width="100%" alt="Nikhil Narsipalli — Curious by Nature, Engineer by Passion. Animated plum flow lines and futuristic orbital network." />
+  <img src="assets/hero-future-optimized.gif?v=20261105-cyclic" width="100%" alt="Nikhil Narsipalli — Curious by Nature, Engineer by Passion. Animated plum flow lines and futuristic orbital network." />
 
   <p><strong>Python-focused Software Engineer · Backend Engineering · Applied AI/ML · Automation</strong></p>
 
@@ -24,7 +24,7 @@
       <p>Outside code? <strong>3D printing, IoT, designing, hardware mechanisms, and prototyping</strong>—I love turning ideas into physical things.</p>
     </td>
     <td width="34%" align="center" valign="middle">
-      <img src="assets/about-point-cloud.webp" alt="Stylized dot-matrix portrait of Nikhil, with curly hair, glasses and navy blazer, in violet holographic particles" width="260" />
+      <img src="assets/about-point-cloud-motion.webp" alt="Stylized dot-matrix portrait of Nikhil, with curly hair, glasses and navy blazer, in violet holographic particles" width="260" />
     </td>
   </tr>
 </table>
@@ -65,7 +65,7 @@
 ## 🧰 Engineering Toolkit
 
 <div align="center">
-  <img src="assets/stack-carousel.gif?v=20261104-opaque" width="100%" alt="Two slow, seamless engineering toolkit carousels flowing in opposite directions" />
+  <img src="assets/stack-carousel.gif?v=20261105-smooth" width="100%" alt="Two slow, seamless engineering toolkit carousels flowing in opposite directions" />
 
   <img src="https://skillicons.dev/icons?i=py,fastapi,django,mysql,docker,aws,azure,git,githubactions,sklearn&theme=dark&perline=10" alt="Primary technology logos: Python, FastAPI, Django, MySQL, Docker, AWS, Azure, Git, GitHub Actions and scikit-learn" />
   <br />
