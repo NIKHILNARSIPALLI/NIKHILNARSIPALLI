@@ -1,41 +1,56 @@
-"""Resample the original header animation and blend its discontinuous seam.
-
-Keep hero-source.gif immutable. All frames use the same 30 ms delay and the
-last-to-first transition is interpolated instead of abruptly jumping.
-"""
+"""Closed-cycle header animation: waves and orbitals are periodic by construction."""
 from pathlib import Path
-from PIL import Image
+import math
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "assets" / "hero-source.gif"
-OUTPUT = ROOT / "assets" / "hero-future-optimized.gif"
-SUBFRAMES = 2
-FRAME_MS = 50
+SOURCE = ROOT / "assets/hero-source.gif"
+OUTPUT = ROOT / "assets/hero-future-optimized.gif"
+FRAMES, FRAME_MS = 120, 40
+TAU = math.tau
 
+def render(base, frame):
+    phase = TAU * frame / FRAMES
+    im = base.copy()
+    d = ImageDraw.Draw(im)
+    # Redraw only the moving half, preserving the original name and tagline.
+    for y in range(im.height):
+        for x in range(500, im.width):
+            halo = max(0, 1 - ((x-635)/410)**2 - ((y-147)/240)**2)
+            a = .20 * halo
+            d.point((x,y), fill=(int(27+27*a), int(16+9*a), int(31+29*a)))
+    for band in range(12):
+        points = []
+        y0 = 63 + 13.2*band
+        for x in range(503, 880, 3):
+            s = (x-503)/377
+            envelope = .30 + .70*math.sin(math.pi*s)**2
+            wave = 10*math.sin(TAU*(2*s-frame/FRAMES)+band*.34) + 3*math.sin(TAU*(3*s+frame/FRAMES)+band*.6)
+            points.append((x, int(y0+envelope*wave)))
+        d.line(points, fill=(104+band*2,55+band,102+band*2), width=1)
+    cx,cy = 635,148
+    for radius in (43,70,95,121):
+        d.ellipse((cx-radius,cy-radius,cx+radius,cy+radius), outline=(105,62,110), width=1)
+    for radius,count in ((43,5),(70,7),(95,9),(121,11)):
+        for j in range(count):
+            angle=TAU*j/count+phase*(1 if radius in (43,95) else -1)
+            x,y=cx+radius*math.cos(angle),cy+radius*math.sin(angle)
+            r=1.6 if j%3 else 2.4
+            d.ellipse((x-r,y-r,x+r,y+r),fill=(214,155,207))
+    nodes=[(cx+48*math.cos(TAU*j/6+phase),cy+48*math.sin(TAU*j/6+phase)) for j in range(6)]
+    for j in range(6):
+        d.line((*nodes[j],*nodes[(j+2)%6]), fill=(158,103,164),width=1)
+    return im
 
 def main():
-    original = Image.open(SOURCE)
-    source_frames = []
-    for index in range(original.n_frames):
-        original.seek(index)
-        source_frames.append(original.convert("RGB"))
-
-    frames = []
-    # The source is a complete periodic cycle: interpolate its LAST-to-FIRST
-    # edge exactly like every other edge (no special crossfade/reset segment).
-    for index in range(len(source_frames)):
-        start, end = source_frames[index], source_frames[(index + 1) % len(source_frames)]
-        for step in range(SUBFRAMES):
-            frames.append(Image.blend(start, end, step / SUBFRAMES))
-
-    palette = source_frames[0].quantize(colors=96)
-    indexed = [frame.quantize(palette=palette, dither=Image.Dither.NONE) for frame in frames]
-    indexed[0].save(
-        OUTPUT, save_all=True, append_images=indexed[1:], loop=0,
-        duration=FRAME_MS, disposal=2, optimize=True,
-    )
-    print(f"Hero: {len(indexed)} uniform frames, {OUTPUT.stat().st_size:,} bytes")
-
+    source=Image.open(SOURCE); source.seek(0)
+    base=source.convert("RGB")
+    frames=[render(base,i) for i in range(FRAMES)]
+    palette=frames[0].quantize(colors=96)
+    indexed=[f.quantize(palette=palette,dither=Image.Dither.NONE) for f in frames]
+    indexed[0].save(OUTPUT,save_all=True,append_images=indexed[1:],
+                    loop=0,duration=FRAME_MS,disposal=2,optimize=True)
+    print(f"Hero: {FRAMES} periodic frames; {OUTPUT.stat().st_size:,} bytes")
 
 if __name__ == "__main__":
     main()
