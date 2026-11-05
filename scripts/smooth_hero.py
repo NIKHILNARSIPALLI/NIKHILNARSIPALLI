@@ -9,9 +9,8 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "assets" / "hero-source.gif"
 OUTPUT = ROOT / "assets" / "hero-future-optimized.gif"
-SUBFRAMES = 3
-SEAM_FRAMES = 12
-FRAME_MS = 30
+SUBFRAMES = 2
+FRAME_MS = 50
 
 
 def main():
@@ -22,29 +21,18 @@ def main():
         source_frames.append(original.convert("RGB"))
 
     frames = []
-    for index in range(len(source_frames) - 1):
-        start, end = source_frames[index:index + 2]
+    # The source is a complete periodic cycle: interpolate its LAST-to-FIRST
+    # edge exactly like every other edge (no special crossfade/reset segment).
+    for index in range(len(source_frames)):
+        start, end = source_frames[index], source_frames[(index + 1) % len(source_frames)]
         for step in range(SUBFRAMES):
             frames.append(Image.blend(start, end, step / SUBFRAMES))
 
-    start, end = source_frames[-1], source_frames[0]
-    for step in range(SEAM_FRAMES):
-        frames.append(Image.blend(start, end, step / SEAM_FRAMES))
-
-    # Build one shared color palette to avoid palette-switch flickering.
-    palette = source_frames[0].quantize(colors=128)
-    indexed = [frame.quantize(palette=palette, dither=Image.Dither.NONE)
-               for frame in frames]
-    colors = palette.getpalette()
-    dark = sorted(range(128), key=lambda i: sum(abs(colors[i * 3 + j] - c)
-                   for j, c in enumerate((23, 13, 29))))
-    a, b = dark[:2]
-    for i, im in enumerate(indexed):
-        im.putpixel((0, 0), a if i % 2 else b)
-        im.putpixel((im.width - 1, im.height - 1), a if i % 2 else b)
+    palette = source_frames[0].quantize(colors=96)
+    indexed = [frame.quantize(palette=palette, dither=Image.Dither.NONE) for frame in frames]
     indexed[0].save(
         OUTPUT, save_all=True, append_images=indexed[1:], loop=0,
-        duration=FRAME_MS, disposal=1, optimize=False,
+        duration=FRAME_MS, disposal=2, optimize=True,
     )
     print(f"Hero: {len(indexed)} uniform frames, {OUTPUT.stat().st_size:,} bytes")
 
